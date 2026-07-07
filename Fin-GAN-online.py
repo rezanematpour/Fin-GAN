@@ -795,7 +795,7 @@ def GradientCheck(ticker, gen, disc, gen_opt, disc_opt, criterion, n_epochs, tra
     Gradient norm check
     """
     ntrain = train_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     BCE_norm = torch.empty(nbatches*n_epochs, device = device)
     PnL_norm = torch.empty(nbatches*n_epochs, device = device)
     MSE_norm = torch.empty(nbatches*n_epochs, device = device)
@@ -1125,7 +1125,7 @@ def TrainLoopMainPnLnv(gen, disc, gen_opt, disc_opt, criterion, alpha, beta, gam
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
@@ -1267,7 +1267,7 @@ def TrainLoopMainPnLMSEnv(gen, disc, gen_opt, disc_opt, criterion, alpha, beta, 
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
@@ -1410,7 +1410,7 @@ def TrainLoopMainPnLMSESRnv(gen, disc, gen_opt, disc_opt, criterion, alpha, beta
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
@@ -1554,7 +1554,7 @@ def TrainLoopMainPnLMSESTDnv(gen, disc, gen_opt, disc_opt, criterion, alpha, bet
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
@@ -1697,7 +1697,7 @@ def TrainLoopMainPnLSRnv(gen, disc, gen_opt, disc_opt, criterion, alpha, beta, g
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
@@ -1844,7 +1844,7 @@ def TrainLoopMainMSEnv(gen, disc, gen_opt, disc_opt, criterion, alpha, beta, gam
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
@@ -1983,7 +1983,7 @@ def TrainLoopMainSRnv(gen, disc, gen_opt, disc_opt, criterion, alpha, beta, gamm
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
@@ -2125,7 +2125,7 @@ def TrainLoopMainSRMSEnv(gen, disc, gen_opt, disc_opt, criterion, alpha, beta, g
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
@@ -2269,7 +2269,7 @@ def TrainLoopMainPnLSTDnv(gen, disc, gen_opt, disc_opt, criterion, alpha, beta, 
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
@@ -2884,7 +2884,7 @@ def GradientCheckLSTM(ticker, gen, gen_opt, n_epochs, train_data,batch_size,hid_
     Gradient check for LSTM-Fin
     """
     ntrain = train_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     PnL_norm = torch.empty(nbatches*n_epochs, device = device)
     MSE_norm = torch.empty(nbatches*n_epochs, device = device)
     SR_norm = torch.empty(nbatches*n_epochs, device = device)
@@ -3129,7 +3129,7 @@ def TrainLoopnLSTMPnL(gen, gen_opt, criterion, alpha, beta, gamma, delta, n_epoc
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     genloss = [False] * (nbatches*n_epochs)
 
     fake_and_condition = False
@@ -3211,7 +3211,7 @@ def TrainLoopnLSTMPnLSTD(gen, gen_opt, criterion, alpha, beta, gamma, delta, n_e
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     genloss = [False] * (nbatches*n_epochs)
 
     fake_and_condition = False
@@ -3294,7 +3294,7 @@ def TrainLoopnLSTMPnLSR(gen, gen_opt, criterion, alpha, beta, gamma, delta, n_ep
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     genloss = [False] * (nbatches*n_epochs)
 
     fake_and_condition = False
@@ -3376,7 +3376,7 @@ def TrainLoopnLSTMSR(gen, gen_opt, criterion, alpha, beta, gamma, delta, n_epoch
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     genloss = [False] * (nbatches*n_epochs)
 
     fake_and_condition = False
@@ -3458,7 +3458,7 @@ def TrainLoopnLSTMSTD(gen, gen_opt, criterion, alpha, beta, gamma, delta, n_epoc
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     genloss = [False] * (nbatches*n_epochs)
 
     fake_and_condition = False
@@ -3540,7 +3540,7 @@ def TrainLoopnLSTM(gen, gen_opt, criterion, alpha, beta, gamma, delta, n_epochs,
     """
     ntrain = train_data.shape[0]
     nval = validation_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     genloss = [False] * (nbatches*n_epochs)
 
     fake_and_condition = False
