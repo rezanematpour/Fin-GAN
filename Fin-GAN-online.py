@@ -991,7 +991,7 @@ def TrainLoopForGAN(gen, disc, gen_opt, disc_opt, criterion, alpha, beta, gamma,
     Training loop for the BCE GAN (ForGAN)
     """
     ntrain = train_data.shape[0]
-    nbatches = ntrain//batch_size+1
+    nbatches = ntrain//batch_size + (1 if ntrain % batch_size != 0 else 0)
     discloss = [False] * (nbatches*n_epochs)
     genloss = [False] * (nbatches*n_epochs)
 
